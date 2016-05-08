@@ -1,0 +1,54 @@
+"of course
+set nocompatible
+
+"auto-install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+
+" Required vim-plug bootstrap
+call plug#begin('~/.vim/bundle')
+
+Plug 'tpope/vim-sensible'
+Plug 'bling/vim-airline'
+
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+
+Plug 'raimondi/delimitmate'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'xuyuanp/nerdtree-git-plugin'
+
+Plug 'flazz/vim-colorschemes'
+Plug 'airblade/vim-gitgutter'
+
+Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'valloric/youcompleteme'
+
+call plug#end()
+
+syntax on
+colorscheme janah
+set number
+set encoding=utf8
+"ultrasnips config
+let g:UltiSnipsExpandTrigger="<C-Space>"
+"vim airline config
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline_theme='bubblegum'
+let g:airline#extensions#tabline#enabled = 1
+" Tab Setup
+set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+set tabstop=4 " the visible width of tabs
+set softtabstop=4 " edit as if the tabs are 4 characters wide
+set shiftwidth=4 " number of spaces to use for indent and unindent
+" close NERDTree after a file is opened
+let g:NERDTreeQuitOnOpen=0
+" show hidden files in NERDTree
+let NERDTreeShowHidden=1
+let mapleader = ","
+nmap <silent> <leader>k :NERDTreeToggle<cr>
