@@ -31,7 +31,9 @@ Plug 'valloric/youcompleteme'
 call plug#end()
 
 syntax on
-colorscheme janah
+set background=dark
+let base16colorspace=256  " Access colors present in 256 colorspace"
+colorscheme delek
 set number
 set encoding=utf8
 "ultrasnips config
