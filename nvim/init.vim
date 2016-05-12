@@ -8,12 +8,15 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " Required vim-plug bootstrap
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/.config/nvim/bundle')
 
 Plug 'tpope/vim-sensible'
 Plug 'bling/vim-airline'
 
-Plug 'sirver/ultisnips'
+Plug 'Shougo/deoplete.nvim'
+Plug 'carlitux/deoplete-ternjs'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 
 Plug 'raimondi/delimitmate'
@@ -26,7 +29,6 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'pangloss/vim-javascript',{ 'for': 'javascript' }
 Plug 'jelera/vim-javascript-syntax',{ 'for': 'javascript' }
-Plug 'valloric/youcompleteme'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
@@ -34,10 +36,12 @@ Plug 'tpope/vim-surround'
 call plug#end()
 
 syntax on
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"set termguicolors
 set autoread
 set background=dark
-let base16colorspace=256  " Access colors present in 256 colorspace"
-colorscheme delek
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme gruvbox
 set number
 set encoding=utf8
 
@@ -46,9 +50,8 @@ set ignorecase " case insensitive searching
 set smartcase " case-sensitive if expresson contains a capital letter
 set hlsearch
 set incsearch " set incremental search, like modern browsers"
-
-"ultrasnips config
-let g:UltiSnipsExpandTrigger="<C-Space>"
+" Deoplete
+let g:deoplete#enable_at_startup = 1
 "vim airline config
 set laststatus=2
 let g:airline_powerline_fonts = 1
