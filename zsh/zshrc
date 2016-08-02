@@ -1,0 +1,26 @@
+source /home/skonteam/.zsh/antigen/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle docker
+antigen bundle command-not-found
+antigen bundle npm
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# nicoulaj's completion files for zsh
+antigen bundle zsh-users/zsh-completions src
+
+# Load the theme.
+antigen theme muse
+
+# Tell antigen that you're done.
+antigen apply
+
+#Uncomment after installing nvm
+#load nvm
+#export NVM_DIR="/home/skonteam/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
