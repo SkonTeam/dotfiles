@@ -2,8 +2,8 @@
 set nocompatible
 
 "auto-install vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
 
@@ -23,6 +23,7 @@ Plug 'raimondi/delimitmate'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdcommenter'
 
 Plug 'flazz/vim-colorschemes'
 Plug 'airblade/vim-gitgutter'
@@ -33,6 +34,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
 
+Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go', { 'do': 'make' }
 call plug#end()
 
 syntax on
@@ -50,11 +53,21 @@ set ignorecase " case insensitive searching
 set smartcase " case-sensitive if expresson contains a capital letter
 set hlsearch
 set incsearch " set incremental search, like modern browsers"
+
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+"" close deoplete preview tab
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+"deoplete tab-complete
+"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+"NeoSnippet
+imap <C-k>	<Plug>(neosnippet_expand_or_jump)
+smap <C-k>	<Plug>(neosnippet_expand_or_jump)
+
 "vim airline config
 set laststatus=2
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_theme='bubblegum'
 let g:airline#extensions#tabline#enabled = 1
 " Tab Setup
@@ -68,3 +81,8 @@ let g:NERDTreeQuitOnOpen=0
 let NERDTreeShowHidden=1
 let mapleader = ","
 nmap <silent> <leader>k :NERDTreeToggle<cr>
+nnoremap <leader>s :w<cr>
+inoremap <leader>s <C-c>:w<cr>
+"Language specifics
+"GoLang
+let g:go_fmt_command = "goimports"
