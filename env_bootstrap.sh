@@ -62,7 +62,30 @@ if [[ "$lastRetVal" == 0 ]]; then
 else
 	echo "[✓] NeoVim."
 fi
-# TODO: Add ZSH install
+
+#Check and install ZSH
+CommandExists "zsh"
+lastRetVal=$?
+if [[ "$lastRetVal" == 0 ]]; then
+	echo "[✓] Installing ZSH..."
+	sudo pacman -S zsh
+	echo "[✓] ZSH."
+else
+	echo "[✓] ZSH."
+fi
+
+CommandExists "antigen"
+lastRetVal=$?
+if [[ "$lastRetVal" == 0 ]]; then
+	echo "[✓] Installing Antigen..."
+	mkdir -p $HOME/.zsh/antigen/
+	curl https://cdn.rawgit.com/zsh-users/antigen/v1.0.4/antigen.zsh > $HOME/.zsh/antigen/antigen.zsh
+	echo "[✓] Antigen."
+else
+	echo "[✓] Antigen."
+fi
+
+# TODO: Add ZSH install [DONE]
 # TODO: Add Antigen install
 # TODO: Add dotfiles install (github.com/skonteam/dotfiles)
 # TODO: Add interactive zshrc manipulation : GOPATH , NVM ,etc...
