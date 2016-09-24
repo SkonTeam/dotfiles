@@ -26,6 +26,7 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'pangloss/vim-javascript',{ 'for': 'javascript' }
@@ -36,6 +37,8 @@ Plug 'tpope/vim-surround'
 
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
+Plug 'mhinz/vim-startify'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 call plug#end()
 
 syntax on
@@ -67,8 +70,8 @@ smap <C-k>	<Plug>(neosnippet_expand_or_jump)
 
 "vim airline config
 set laststatus=2
-let g:airline_powerline_fonts = 0
-let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts = 1
+let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 " Tab Setup
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
