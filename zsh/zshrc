@@ -23,7 +23,7 @@ antigen apply
 export EDITOR=nvim
 #Gruvbox colorpalette
 source $HOME/dotfiles/nvim/gruvbox_256palette.sh
-
+source $HOME/dotfiles/zsh/aliases.sh
 #Uncomment after installing GO and NVM
 
 #export GOPATH=$HOME/Devwork/go
