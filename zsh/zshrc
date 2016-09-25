@@ -15,7 +15,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions src
 
 # Load the theme.
-antigen theme muse
+antigen theme miloshadzic
 
 # Tell antigen that you're done.
 antigen apply

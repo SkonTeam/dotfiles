@@ -1,8 +1,14 @@
 [options]
-font = Fira Mono 11
+font = hermit 11
 
 [colors]
-background = #32302f
+#backgorund soft
+#background = #32302f
+#backgorund medium
+#background = #282828
+#background hard
+background = #1d2021
+
 foreground = #ebdbb2
 foreground_bold = #ebdbb2
 

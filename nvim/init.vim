@@ -44,6 +44,7 @@ call plug#end()
 syntax on
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "set termguicolors
+let g:gruvbox_contrast_dark = 'hard'
 set autoread
 set background=dark
 let base16colorspace=256  " Access colors present in 256 colorspace
