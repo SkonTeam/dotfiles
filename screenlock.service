@@ -1,0 +1,14 @@
+#copy to /etc/systemd/system/sleep.target.wants/
+[Unit]
+Description=Starts i3lock at suspend time
+Before=sleep.target
+
+[Service]
+User=skonteam
+Type=forking
+Environment=DISPLAY=:0
+ExecStartPre=
+ExecStart=/home/skonteam/lock.sh
+
+[Install]
+WantedBy=sleep.target

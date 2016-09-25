@@ -122,4 +122,5 @@ fi
 # TODO: Add interactive zshrc manipulation : GOPATH , NVM ,etc...
 # TODO: Add font : fira-mono , vim deoplete python3.
 # TODO: try i3 , awesome , BSPWM.
-# TODO: install i3 , i3blocks , rofi
+# TODO: install i3-gaps , i3blocks-gaps , rofi
+# TODO: install lock.sh dependencies
