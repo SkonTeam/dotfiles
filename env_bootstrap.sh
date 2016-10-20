@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if [[ $(id -u) != 0 ]]; then
-	exec sudo -E -- "$0" "$@"
-fi
+#if [[ $(id -u) != 0 ]]; then
+#	exec sudo -E -- "$0" "$@"
+#fi
 # Exit with a message
 Abort(){
 	echo "[x] $1 not detected, Aborting."
@@ -11,15 +11,11 @@ Abort(){
 
 # Returns 0 if command is non existant
 CommandExists(){
-	local CommandReturnVal=`command -v $1`
+	local CommandReturnVal=`type $1 2>/dev/null`
 	if [[ -z "$CommandReturnVal" ]]; then
-		local isFunction=`type $1 2>/dev/null`
-		if [[ -z "$isFunction" ]]; then
-			return 1
-		fi
-		return 0
-	else
 		return 1
+	else
+		return 0
 	fi
 }
 
@@ -52,20 +48,21 @@ fi
 
 CommandExists "yaourt"
 lastRetVal=$?
-if [[ "$lastRetVal" == 0 ]]; then
+if [[ "$lastRetVal" == "1" ]]; then
 	echo "[✓] Installing Yaourt dependencies..."
-		pacman -S --needed base-devel git wget yajl
+		sudo pacman -S --needed base-devel git wget yajl
 	echo "[✓] Installing packge-query..."
 		mkdir /tmp/yaourt_install
 		cd /tmp/yaourt_install/
 		git clone https://aur.archlinux.org/package-query.git
 		cd package-query/
-		makepkg -si --needed
+		makepkg -si
 		cd ..
 	echo "[✓] Installing yaourt..."
 		git clone https://aur.archlinux.org/yaourt.git
 		cd yaourt/
-		makepkg -si -needed
+		makepkg -si
+		sudo rm -r /tmp/yaourt_install
 	echo "[✓] Yaourt installed."
 else
 	echo "[✓] Yaourt."
@@ -74,9 +71,9 @@ fi
 # Check for NeoVim and install
 CommandExists "nvim"
 lastRetVal=$?
-if [[ "$lastRetVal" == 0 ]]; then
+if [[ "$lastRetVal" == "1" ]]; then
 	echo "[✓] Installing NeoVim..."
-	pacman -S neovim
+	sudo pacman -S neovim
 	echo "[✓] NeoVim installed."
 else
 	echo "[✓] NeoVim."
@@ -85,9 +82,9 @@ fi
 #Check and install ZSH
 CommandExists "zsh"
 lastRetVal=$?
-if [[ "$lastRetVal" == 0 ]]; then
+if [[ "$lastRetVal" == "1" ]]; then
 	echo "[✓] Installing ZSH..."
-	pacman -S zsh
+	sudo pacman -S zsh
 	echo "[✓] ZSH installed."
 else
 	echo "[✓] ZSH."
@@ -95,7 +92,7 @@ fi
 
 CommandExists "antigen"
 lastRetVal=$?
-if [[ "$lastRetVal" == "0" ]]; then
+if [[ "$lastRetVal" == "1" ]]; then
 	echo "[✓] Installing Antigen..."
 	mkdir -p $HOME/.zsh/antigen/
 	curl https://cdn.rawgit.com/zsh-users/antigen/v1.0.4/antigen.zsh > $HOME/.zsh/antigen/antigen.zsh

@@ -9,16 +9,6 @@
 set nocompatible
 " }}}
 
-" Colors {{{
-syntax on
-"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"set termguicolors
-let g:gruvbox_contrast_dark = 'hard'
-set background=dark
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme gruvbox
-" }}}
-
 " Auto install {{{
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -59,6 +49,16 @@ Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 call plug#end()
+" }}}
+
+" Colors {{{
+syntax on
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"set termguicolors
+let g:gruvbox_contrast_dark = 'hard'
+set background=dark
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme gruvbox
 " }}}
 
 " Misc {{{
