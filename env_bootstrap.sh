@@ -48,13 +48,8 @@ else
 fi
 
 # Check if running Gnome desktop
-if [[ $DESKTOP_SESSION -eq "gnome" ]]; then
-	echo "[✓] GNOME."
-else
-	Abort "GNOME"
-fi
-
 # Check for Yaourt and install
+
 CommandExists "yaourt"
 lastRetVal=$?
 if [[ "$lastRetVal" == 0 ]]; then
@@ -124,3 +119,5 @@ fi
 # TODO: try i3 , awesome , BSPWM.
 # TODO: install i3-gaps , i3blocks-gaps , rofi
 # TODO: install lock.sh dependencies
+# TODO: Install iosevka font and San Francisco System Display.
+# TODO: Add stow symlink
