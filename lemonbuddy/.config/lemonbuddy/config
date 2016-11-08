@@ -1,0 +1,233 @@
+;=====================================================
+;
+;   To learn more about how to configure Lemonbuddy
+;   go to https://github.com/jaagr/lemonbuddy
+;
+;   The README contains alot of information
+;
+;=====================================================
+;First Monitor : DVI-D-0
+;Second Monitor : DVI-I-0
+[bar/main]
+monitor = DVI-D-0 
+;monitor = DVI-I-0
+dock = false
+width = 100%
+height = 20
+
+;background = #ee222222
+background = #1d2021
+;foreground = #ccfafafa
+foreground = #ebdbb2
+linecolor = #666
+
+border-bottom = 2
+border-bottom-color = #3c3836
+
+spacing = 1
+lineheight = 1
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Hack:size=8;1
+font-1 = FontAwesome:size=8;0
+
+modules-center = i3
+modules-right = date shutdown
+modules-left = volume network memory cpu
+
+tray-position = right
+tray-background = #1d2021
+tray-padding = 4
+[bar/right]
+;monitor = DVI-D-0 
+monitor = DVI-I-0
+dock = false
+width = 100%
+height = 20
+
+;background = #ee222222
+background = #1d2021
+;foreground = #ccfafafa
+foreground = #ebdbb2
+linecolor = #666
+
+border-bottom = 2
+border-bottom-color = #333
+
+spacing = 1
+lineheight = 1
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Hack:size=8;1
+font-1 = FontAwesome:size=8;0
+
+modules-center = i3
+modules-right = date
+;modules-left = volume network memory cpu
+;menu
+
+;tray-position = right
+;tray-background = #1d2021
+;tray-padding = 4
+
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+index-sort = true
+
+label-focused = %name%
+label-focused-background = #ee333333
+label-focused-overline= #83a598
+label-focused-padding = 2
+label-focused-font = 1
+
+label-unfocused = %name%
+label-unfocused-padding = 2
+label-unfocused-font = 1
+
+label-urgent = %name%!
+label-urgent-background = #bd2c40
+label-urgent-padding = 2
+label-urgent-font = 1
+
+label-visible = %name%
+label-visible-foreground = #444
+label-visible-padding = 2
+label-visible-font = 1
+
+strip-wsnumbers = true
+pin-workspaces = true
+
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-3 = 4;
+;ws-icon-4 = 5;
+ws-icon-default = 
+
+[module/volume]
+type = internal/volume
+
+; Name of the master mixer
+; Default: Master
+master-mixer = Master
+label-volume =  %percentage%
+label-muted =  off
+[module/memory]
+type = internal/memory
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3
+; Available tags:
+;   <label> (default)
+;   <bar-used>
+;   <bar-free>
+format = <label> 
+;<bar-used>
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = %{F#fe8019} %gb_used%%{F#cc}
+
+; Only applies if <bar-used> is used
+bar-used-width = 10
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+;bar-used-indicator = ▐
+;bar-used-fill = ▐
+;bar-used-empty = ▐
+bar-used-indicator = #
+bar-used-fill = #
+bar-used-empty = _ 
+bar-used-empty-foreground = #444444
+
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+format = <label> <bar-load>
+
+; Available tokens:
+;   %percentage% (default) - total cpu load
+label = %{F#fabd2f} %percentage% %{F#cc} 
+;bar-load-width = 10
+
+bar-load-width = 10
+bar-load-foreground-0 = #55aa55
+bar-load-foreground-1 = #557755
+bar-load-foreground-2 = #f5a70a
+bar-load-foreground-3 = #ff5555
+;bar-load-indicator = ▐
+;bar-load-fill = ▐
+;bar-load-empty = ▐
+bar-load-indicator = #
+bar-load-fill = #
+bar-load-empty = _
+bar-load-empty-foreground = #444444
+
+[module/date]
+type = internal/date
+date = %d-%m-%Y %%{F#83a598}%H:%M%%{F#cc}
+interval = 5
+[module/menu]
+type = custom/menu
+menu-0-0 = Browsers
+menu-0-0-exec = echo "hi 0"
+menu-0-1 = Multimedia
+menu-0-1-exec = echo "hi 1"
+
+label-open = Apps
+label-close = x
+[module/network]
+type = internal/network
+interface = eno1
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3.0
+
+; Test connectivity every Nth update
+; A value of 0 disables the feature
+; Default: 0
+;ping-interval = 3
+label-connected = %{F#b8bb26}%downspeed%%{F#cc}
+; Minimum output width of upload/download rate
+; Default: 3
+udspeed-minwidth = 3 
+[module/shutdown]
+type = custom/text
+content = 
+click-left = ~/.i3blocks/i3blocks-contrib/shutdown_menu/shutdown_menu
+;[module/xtitle]
+;type = custom/script
+;exec = xprop -id $(xprop -root _NET_ACTIVE_WINDOW | cut -d ' ' -f 5) WM_NAME | sed -nr 's/.*= "(.*)"$/\1/p'
+;tail = true
+;maxlen = 40
+; vim:ft=dosini
