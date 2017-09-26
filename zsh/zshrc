@@ -1,33 +1,65 @@
-source $HOME/.zsh/antigen/antigen.zsh
+# Check if zplug is installed
+if [[ ! -d ~/.zplug ]]; then
+  git clone https://github.com/zplug/zplug ~/.zplug
+  source ~/.zplug/init.zsh && zplug update --self
+fi
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
+# Essential
+source ~/.zplug/init.zsh
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-antigen bundle docker
-antigen bundle command-not-found
-antigen bundle npm
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
+# Make sure to use double quotes to prevent shell expansion
+zplug "plugins/osx", from:oh-my-zsh
+zplug "plugins/common-aliases", from:oh-my-zsh
 
-# nicoulaj's completion files for zsh
-antigen bundle zsh-users/zsh-completions src
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-history-substring-search"
 
-# Load the theme.
-antigen theme miloshadzic
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/npm", from:oh-my-zsh
 
-# Tell antigen that you're done.
-antigen apply
+zplug "lib/spectrum", from:oh-my-zsh
 
+zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
+# Add a bunch more of your favorite packages!
+SPACESHIP_BATTERY_ALWAYS_SHOW=true
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_EXEC_TIME_SHOW=false
+# Install packages that have not been installed yet
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    else
+        echo
+    fi
+fi
+
+zplug load
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=245'
+alias ls='ls -G'
+
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+
+#bindkey -v
+#bindkey "^R" history-incremental-search-backward
 export EDITOR=nvim
-#Gruvbox colorpalette
-source $HOME/dotfiles/nvim/gruvbox_256palette.sh
 source $HOME/dotfiles/zsh/aliases.sh
 #Uncomment after installing GO and NVM
 
-#export GOPATH=$HOME/Devwork/go
-#export PATH=$PATH:$GOPATH/bin
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export GOPATH=$HOME/Projects/golang
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools/
 
+export NVM_DIR="$HOME/.nvm"
+source "/usr/local/opt/nvm/nvm.sh"
 #export NVM_DIR=$HOME/.nvm
 #[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+eval $(thefuck --alias)
+notica() { curl --data "d:$*" https://notica.us/Hpr9Pkly ; }
